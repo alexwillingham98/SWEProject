@@ -10,6 +10,11 @@ import {
 	useInnerBlockLayoutContext,
 	useProductDataContext,
 } from '@woocommerce/shared-context';
+import {
+	useBorderProps,
+	useSpacingProps,
+	useTypographyProps,
+} from '@woocommerce/base-hooks';
 import { withProductDataContext } from '@woocommerce/shared-hocs';
 import { useStoreEvents } from '@woocommerce/base-context/hooks';
 
@@ -18,21 +23,16 @@ import { useStoreEvents } from '@woocommerce/base-context/hooks';
  */
 import ProductSaleBadge from './../sale-badge/block';
 import './style.scss';
-import {
-	useBorderProps,
-	useSpacingProps,
-	useTypographyProps,
-} from '../../../../hooks/style-attributes';
 
 /**
  * Product Image Block Component.
  *
- * @param {Object} props                  Incoming props.
- * @param {string} [props.className]      CSS Class name for the component.
- * @param {string} [props.imageSizing]    Size of image to use.
- * @param {boolean} [props.showProductLink]   Whether or not to display a link to the product page.
- * @param {boolean} [props.showSaleBadge] Whether or not to display the on sale badge.
- * @param {string} [props.saleBadgeAlign] How should the sale badge be aligned if displayed.
+ * @param {Object}  props                   Incoming props.
+ * @param {string}  [props.className]       CSS Class name for the component.
+ * @param {string}  [props.imageSizing]     Size of image to use.
+ * @param {boolean} [props.showProductLink] Whether or not to display a link to the product page.
+ * @param {boolean} [props.showSaleBadge]   Whether or not to display the on sale badge.
+ * @param {string}  [props.saleBadgeAlign]  How should the sale badge be aligned if displayed.
  * @return {*} The component.
  */
 export const Block = ( props ) => {
@@ -60,7 +60,8 @@ export const Block = ( props ) => {
 					className,
 					'wc-block-components-product-image',
 					{
-						[ `${ parentClassName }__product-image` ]: parentClassName,
+						[ `${ parentClassName }__product-image` ]:
+							parentClassName,
 					},
 					borderProps.className
 				) }
@@ -84,7 +85,6 @@ export const Block = ( props ) => {
 	);
 	const anchorProps = {
 		href: product.permalink,
-		rel: 'nofollow',
 		...( ! hasProductImages && { 'aria-label': anchorLabel } ),
 		onClick: () => {
 			dispatchStoreEvent( 'product-view-link', {
